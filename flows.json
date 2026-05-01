@@ -1,0 +1,1011 @@
+[
+    {
+        "id": "8578d3f49c26d119",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1b34e4de264ccc53",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5f3a80438b41499c",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2359afb028aabe3c",
+        "type": "tab",
+        "label": "Flow 5",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "38b60948cb02456e",
+        "type": "tab",
+        "label": "Flow 6",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1fb71b5ad94e9592",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c71559f8645e5404",
+        "type": "subflow",
+        "name": "Obtener Timestamp",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 100,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "b53658927da8ef2e"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 620,
+                "y": 100,
+                "wires": [
+                    {
+                        "id": "d7534dd767d684df",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "d7534dd767d684df",
+        "type": "function",
+        "z": "c71559f8645e5404",
+        "name": "Obtener Timestamp",
+        "func": "const fecha = new Date();\n\nconst anio = fecha.getFullYear();\nconst mes = (\"0\" + (fecha.getMonth() + 1)).slice(-2);\nconst dia = (\"0\" + fecha.getDate()).slice(-2);\nconst hora = (\"0\" + fecha.getHours()).slice(-2);\nconst minutos = (\"0\" + fecha.getMinutes()).slice(-2);\nconst segundos = (\"0\" + fecha.getSeconds()).slice(-2);\n\nlet timestamp = anio + \"-\" + mes + \"-\" + dia + \"-\" + hora + \"-\" + minutos + \"-\" + segundos + \"-\";\n\nflow.set(\"timestamp\", timestamp);\n\nmsg.payload = timestamp;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b53658927da8ef2e",
+        "type": "trigger",
+        "z": "c71559f8645e5404",
+        "name": "",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "-1",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 250,
+        "y": 100,
+        "wires": [
+            [
+                "d7534dd767d684df"
+            ]
+        ]
+    },
+    {
+        "id": "12bd022b7f8de904",
+        "type": "inject",
+        "z": "8578d3f49c26d119",
+        "name": "Inject node",
+        "props": [
+            {
+                "p": "saludo",
+                "v": "Hola Mundo",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 180,
+        "y": 280,
+        "wires": [
+            [
+                "d3788ed0393a28cd"
+            ]
+        ],
+        "outputLabels": [
+            "Mostrar msg"
+        ]
+    },
+    {
+        "id": "d3788ed0393a28cd",
+        "type": "debug",
+        "z": "8578d3f49c26d119",
+        "name": "debug node",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "saludo",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 280,
+        "wires": [],
+        "inputLabels": [
+            "Entrada del msg"
+        ]
+    },
+    {
+        "id": "968f02c520cb17e8",
+        "type": "inject",
+        "z": "1b34e4de264ccc53",
+        "name": "Injection node",
+        "props": [
+            {
+                "p": "nro_1",
+                "v": "30",
+                "vt": "num"
+            },
+            {
+                "p": "nro_2",
+                "v": "30",
+                "vt": "num"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 210,
+        "y": 180,
+        "wires": [
+            [
+                "1aef6a402509e122"
+            ]
+        ]
+    },
+    {
+        "id": "3ee59600e3075cfe",
+        "type": "debug",
+        "z": "1b34e4de264ccc53",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "1aef6a402509e122",
+        "type": "function",
+        "z": "1b34e4de264ccc53",
+        "name": "Suma de nros",
+        "func": "// Sumo los valores recibidos desde el Inject\nconst resultado = msg.nro_1 + msg.nro_2;\n\n// Envío el resultado en payload\nmsg.payload = resultado;\n\n// Si es > 50 → salida 1, si no → salida 2\nif (resultado > 50) {\n    return [msg, null];\n} else {\n    return [null, msg];\n}\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 180,
+        "wires": [
+            [
+                "3ee59600e3075cfe"
+            ]
+        ]
+    },
+    {
+        "id": "a1ed398c1f438f9a",
+        "type": "inject",
+        "z": "5f3a80438b41499c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "746553bed40c8954"
+            ]
+        ]
+    },
+    {
+        "id": "746553bed40c8954",
+        "type": "function",
+        "z": "5f3a80438b41499c",
+        "name": "function 1",
+        "func": "context.set(\"prueba_context\", 1);\nflow.set(\"prueba_flow\", 2);\nglobal.set(\"prueba_global\", 3);\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 160,
+        "wires": [
+            [
+                "faece201995a34d7"
+            ]
+        ]
+    },
+    {
+        "id": "faece201995a34d7",
+        "type": "debug",
+        "z": "5f3a80438b41499c",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "9a13cff5fa5ed065",
+        "type": "inject",
+        "z": "5f3a80438b41499c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 240,
+        "wires": [
+            [
+                "05c9eb57030f636b"
+            ]
+        ]
+    },
+    {
+        "id": "5e8af0b4e51baa0e",
+        "type": "debug",
+        "z": "5f3a80438b41499c",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "05c9eb57030f636b",
+        "type": "function",
+        "z": "5f3a80438b41499c",
+        "name": "function 2",
+        "func": "msg.context = context.get(\"prueba_context\");\nmsg.flow = flow.get(\"prueba_flow\");\nmsg.global = global.get(\"prueba_global\");\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 240,
+        "wires": [
+            [
+                "5e8af0b4e51baa0e"
+            ]
+        ]
+    },
+    {
+        "id": "90c94bdf3a743b35",
+        "type": "inject",
+        "z": "5f3a80438b41499c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "20",
+        "payloadType": "num",
+        "x": 130,
+        "y": 320,
+        "wires": [
+            [
+                "d485d4d961815093"
+            ]
+        ]
+    },
+    {
+        "id": "d485d4d961815093",
+        "type": "function",
+        "z": "5f3a80438b41499c",
+        "name": "function 3",
+        "func": "let actual = msg.payload;\n\nif (flow.get(\"maximo\") === undefined) {\n    flow.set(\"maximo\", actual);\n}\n\nif (actual > flow.get(\"maximo\")) {\n    flow.set(\"maximo\", actual);\n}\n\nmsg.payload = flow.get(\"maximo\");\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 320,
+        "wires": [
+            [
+                "382e4f3a99267d06"
+            ]
+        ]
+    },
+    {
+        "id": "382e4f3a99267d06",
+        "type": "debug",
+        "z": "5f3a80438b41499c",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "6cde44b0f5f0b232",
+        "type": "change",
+        "z": "5f3a80438b41499c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "maximo",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 320,
+        "y": 480,
+        "wires": [
+            [
+                "dea17cd9fe2f2c54"
+            ]
+        ]
+    },
+    {
+        "id": "37e61e51b26878b9",
+        "type": "inject",
+        "z": "5f3a80438b41499c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 480,
+        "wires": [
+            [
+                "6cde44b0f5f0b232"
+            ]
+        ]
+    },
+    {
+        "id": "dea17cd9fe2f2c54",
+        "type": "debug",
+        "z": "5f3a80438b41499c",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "file1",
+        "type": "file in",
+        "z": "2359afb028aabe3c",
+        "name": "C:\\Users\\juanm\\.node-red\\datos.csv",
+        "filename": "C:\\Users\\juanm\\.node-red\\datos.csv",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "allProps": false,
+        "x": 400,
+        "y": 280,
+        "wires": [
+            [
+                "csv1"
+            ]
+        ]
+    },
+    {
+        "id": "csv1",
+        "type": "csv",
+        "z": "2359afb028aabe3c",
+        "name": "Parse CSV",
+        "spec": "rfc",
+        "sep": ",",
+        "hdrin": true,
+        "hdrout": "none",
+        "multi": "mult",
+        "ret": "\\n",
+        "temp": "",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": false,
+        "include_null_values": false,
+        "x": 690,
+        "y": 280,
+        "wires": [
+            [
+                "maxPot",
+                "avgCorr"
+            ]
+        ]
+    },
+    {
+        "id": "maxPot",
+        "type": "function",
+        "z": "2359afb028aabe3c",
+        "name": "Calcular Potencia Máxima",
+        "func": "flow.set(\"potencia_max\", msg.payload[0].potencia);\n\nfor (let i = 1; i < msg.payload.length; i++) {\n    if (flow.get(\"potencia_max\") < msg.payload[i].potencia) {\n        flow.set(\"potencia_max\", msg.payload[i].potencia);\n    }\n}\n\nmsg.payload = flow.get(\"potencia_max\");\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 930,
+        "y": 260,
+        "wires": [
+            [
+                "debugMax",
+                "3f91e9ee320c7781"
+            ]
+        ]
+    },
+    {
+        "id": "debugMax",
+        "type": "debug",
+        "z": "2359afb028aabe3c",
+        "name": "Potencia Máxima",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1190,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "avgCorr",
+        "type": "function",
+        "z": "2359afb028aabe3c",
+        "name": "Promedio Corriente",
+        "func": "let suma_corriente = 0;\n\nfor (let i = 0; i < msg.payload.length; i++) {\n    suma_corriente += msg.payload[i].corriente;\n}\n\nlet promedio_corriente = suma_corriente / msg.payload.length;\n\nmsg.payload = promedio_corriente;\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 910,
+        "y": 360,
+        "wires": [
+            [
+                "debugAvg"
+            ]
+        ]
+    },
+    {
+        "id": "debugAvg",
+        "type": "debug",
+        "z": "2359afb028aabe3c",
+        "name": "Corriente Promedio",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1190,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "bbbe8443cdc92ff8",
+        "type": "inject",
+        "z": "2359afb028aabe3c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "file1"
+            ]
+        ]
+    },
+    {
+        "id": "db83a4ebba2da967",
+        "type": "function",
+        "z": "2359afb028aabe3c",
+        "name": "function 4",
+        "func": "msg.payload = \"La Corriente máxima es\" + \" \" + msg.payload;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 540,
+        "wires": [
+            [
+                "3ef7edf91ea55f70"
+            ]
+        ]
+    },
+    {
+        "id": "3ef7edf91ea55f70",
+        "type": "debug",
+        "z": "2359afb028aabe3c",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "3f91e9ee320c7781",
+        "type": "link out",
+        "z": "2359afb028aabe3c",
+        "name": "link out 1",
+        "mode": "return",
+        "links": [],
+        "x": 1075,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "3bafebbf880ee0e3",
+        "type": "link in",
+        "z": "2359afb028aabe3c",
+        "name": "link in 1",
+        "links": [],
+        "x": 585,
+        "y": 540,
+        "wires": [
+            [
+                "db83a4ebba2da967"
+            ]
+        ]
+    },
+    {
+        "id": "3b3ff3fe9949c90b",
+        "type": "link in",
+        "z": "2359afb028aabe3c",
+        "name": "link in 3",
+        "links": [],
+        "x": 135,
+        "y": 360,
+        "wires": [
+            [
+                "file1"
+            ]
+        ]
+    },
+    {
+        "id": "a33e523a0a2f532b",
+        "type": "inject",
+        "z": "2359afb028aabe3c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 620,
+        "wires": [
+            [
+                "6052e1477f764e06"
+            ]
+        ]
+    },
+    {
+        "id": "5eb27fb57d0c949f",
+        "type": "debug",
+        "z": "2359afb028aabe3c",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "6052e1477f764e06",
+        "type": "link call",
+        "z": "2359afb028aabe3c",
+        "name": "",
+        "links": [
+            "3b3ff3fe9949c90b"
+        ],
+        "linkType": "static",
+        "timeout": "30",
+        "x": 390,
+        "y": 620,
+        "wires": [
+            [
+                "5eb27fb57d0c949f"
+            ]
+        ]
+    },
+    {
+        "id": "9c9de4139982a6dd",
+        "type": "delay",
+        "z": "38b60948cb02456e",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 380,
+        "y": 280,
+        "wires": [
+            [
+                "297edc48c7e1730e"
+            ]
+        ]
+    },
+    {
+        "id": "a1efd592701a6013",
+        "type": "inject",
+        "z": "38b60948cb02456e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Hola!",
+        "payloadType": "str",
+        "x": 190,
+        "y": 200,
+        "wires": [
+            [
+                "6aba084f5ca4d1bf",
+                "9c9de4139982a6dd"
+            ]
+        ]
+    },
+    {
+        "id": "6aba084f5ca4d1bf",
+        "type": "debug",
+        "z": "38b60948cb02456e",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "297edc48c7e1730e",
+        "type": "debug",
+        "z": "38b60948cb02456e",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "f0b0e81b19c5d955",
+        "type": "function",
+        "z": "1fb71b5ad94e9592",
+        "name": "function 5",
+        "func": "msg.payload = \"La Corriente máxima es\" + \" \" + msg.payload + \" \" + \"desde otro flow\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 100,
+        "wires": [
+            [
+                "ec021a4a77ea22bf"
+            ]
+        ]
+    },
+    {
+        "id": "ec021a4a77ea22bf",
+        "type": "debug",
+        "z": "1fb71b5ad94e9592",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "2b48f1614b9a23ef",
+        "type": "link in",
+        "z": "1fb71b5ad94e9592",
+        "name": "link in 2",
+        "links": [],
+        "x": 125,
+        "y": 100,
+        "wires": [
+            [
+                "f0b0e81b19c5d955"
+            ]
+        ]
+    },
+    {
+        "id": "f00e4ebd64783337",
+        "type": "inject",
+        "z": "1fb71b5ad94e9592",
+        "name": "Activar",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 220,
+        "wires": [
+            [
+                "63b98ea730d4be6c"
+            ]
+        ]
+    },
+    {
+        "id": "e49117e10d9df869",
+        "type": "debug",
+        "z": "1fb71b5ad94e9592",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "63b98ea730d4be6c",
+        "type": "subflow:c71559f8645e5404",
+        "z": "1fb71b5ad94e9592",
+        "name": "",
+        "x": 370,
+        "y": 220,
+        "wires": [
+            [
+                "e49117e10d9df869"
+            ]
+        ]
+    },
+    {
+        "id": "3bb64aca70624644",
+        "type": "inject",
+        "z": "1fb71b5ad94e9592",
+        "name": "Detener",
+        "props": [
+            {
+                "p": "reset",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "63b98ea730d4be6c"
+            ]
+        ]
+    }
+]
