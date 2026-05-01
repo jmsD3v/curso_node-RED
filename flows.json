@@ -1167,10 +1167,15 @@
         "id": "0f481a11a5a47f86",
         "type": "function",
         "z": "b611bc9432de176f",
-        "name": "Lógica Motor",
+        "name": "Lógica Motor 1",
         "func": "let cmd = msg.payload;\nlet estado = flow.get(\"estado_motor\") || \"stopped\";\n\nif (cmd === \"start\") estado = \"running\";\nif (cmd === \"stop\") estado = \"stopped\";\n\nflow.set(\"estado_motor\", estado);\n\nmsg.payload = estado;\nreturn msg;",
         "outputs": 1,
-        "x": 610,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
         "y": 420,
         "wires": [
             [
@@ -1188,6 +1193,9 @@
         "width": "6",
         "height": "2",
         "format": "<div style='text-align:center;'>\n  <div id=\"led\" style=\"width:30px;height:30px;border-radius:50%;margin:auto;background-color:grey;\"></div>\n  <p id=\"estado_texto\">Esperando...</p>\n</div>\n\n<script>\n(function(scope) {\n    scope.$watch('msg', function(msg) {\n        if (!msg) return;\n        let led = document.getElementById('led');\n        let txt = document.getElementById('estado_texto');\n\n        if (msg.payload === 'running') {\n            led.style.backgroundColor = 'green';\n            txt.innerHTML = 'Motor en marcha';\n        }\n        else if (msg.payload === 'stopped') {\n            led.style.backgroundColor = 'red';\n            txt.innerHTML = 'Motor detenido';\n        }\n    });\n})(scope);\n</script>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "templateScope": "local",
         "x": 950,
         "y": 420,
         "wires": [
