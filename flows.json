@@ -48,6 +48,12 @@
         "env": []
     },
     {
+        "id": "b611bc9432de176f",
+        "type": "tab",
+        "label": "Dashboard Motor",
+        "disabled": false
+    },
+    {
         "id": "c71559f8645e5404",
         "type": "subflow",
         "name": "Obtener Timestamp",
@@ -79,6 +85,63 @@
         "env": [],
         "meta": {},
         "color": "#DDAA99"
+    },
+    {
+        "id": "ui_group_motor",
+        "type": "ui-group",
+        "name": "Control de Motor",
+        "width": "6",
+        "order": 1
+    },
+    {
+        "id": "ui1",
+        "type": "ui-base",
+        "name": "Dashboard",
+        "path": "/dashboard"
+    },
+    {
+        "id": "page1",
+        "type": "ui-page",
+        "name": "Motor",
+        "ui": "ui1",
+        "path": "/motor",
+        "icon": "fa-cog",
+        "order": 1
+    },
+    {
+        "id": "group1",
+        "type": "ui-group",
+        "name": "Control",
+        "page": "page1",
+        "width": "6"
+    },
+    {
+        "id": "ui_tab_motor",
+        "type": "ui-tab",
+        "name": "Motor",
+        "icon": "fa-cog",
+        "order": 1
+    },
+    {
+        "id": "9f36c6481e05b362",
+        "type": "ui-tab",
+        "name": "Motor",
+        "icon": "fa-cog",
+        "order": 1
+    },
+    {
+        "id": "a04e8825f2f313e6",
+        "type": "ui-tab",
+        "name": "Motor",
+        "icon": "fa-cog",
+        "order": 1
+    },
+    {
+        "id": "efced20a45388ba0",
+        "type": "ui-tab",
+        "name": "Motor",
+        "icon": "fa-cog",
+        "order": 1
     },
     {
         "id": "d7534dd767d684df",
@@ -1006,6 +1069,129 @@
             [
                 "63b98ea730d4be6c"
             ]
+        ]
+    },
+    {
+        "id": "9f92e04998d7e031",
+        "type": "ui-template",
+        "z": "b611bc9432de176f",
+        "group": "group1",
+        "name": "Imagen Motor",
+        "order": 1,
+        "width": "6",
+        "height": "3",
+        "format": "<div style='text-align:center;'>\n  <img src=\"https://i.imgur.com/1J8ZQ0M.png\" style=\"width:80%;\" />\n</div>",
+        "x": 320,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "55e5daf3ae286249",
+        "type": "ui-button",
+        "z": "b611bc9432de176f",
+        "group": "group1",
+        "name": "Start",
+        "label": "Start",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "emulateClick": false,
+        "color": "white",
+        "bgcolor": "green",
+        "className": "",
+        "icon": "fa-play",
+        "iconPosition": "left",
+        "payload": "start",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 310,
+        "y": 440,
+        "wires": [
+            [
+                "0f481a11a5a47f86"
+            ]
+        ]
+    },
+    {
+        "id": "b5088a695839293a",
+        "type": "ui-button",
+        "z": "b611bc9432de176f",
+        "group": "group1",
+        "name": "Stop",
+        "label": "Stop",
+        "order": 3,
+        "width": "3",
+        "height": "1",
+        "emulateClick": false,
+        "color": "white",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "fa-stop",
+        "iconPosition": "left",
+        "payload": "stop",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 310,
+        "y": 540,
+        "wires": [
+            [
+                "0f481a11a5a47f86"
+            ]
+        ]
+    },
+    {
+        "id": "0f481a11a5a47f86",
+        "type": "function",
+        "z": "b611bc9432de176f",
+        "name": "Lógica Motor",
+        "func": "let cmd = msg.payload;\nlet estado = flow.get(\"estado_motor\") || \"stopped\";\n\nif (cmd === \"start\") estado = \"running\";\nif (cmd === \"stop\") estado = \"stopped\";\n\nflow.set(\"estado_motor\", estado);\n\nmsg.payload = estado;\nreturn msg;",
+        "outputs": 1,
+        "x": 610,
+        "y": 420,
+        "wires": [
+            [
+                "9c3defdce355b13e"
+            ]
+        ]
+    },
+    {
+        "id": "9c3defdce355b13e",
+        "type": "ui-template",
+        "z": "b611bc9432de176f",
+        "group": "group1",
+        "name": "LED Estado",
+        "order": 4,
+        "width": "6",
+        "height": "2",
+        "format": "<div style='text-align:center;'>\n  <div id=\"led\" style=\"width:30px;height:30px;border-radius:50%;margin:auto;background-color:grey;\"></div>\n  <p id=\"estado_texto\">Esperando...</p>\n</div>\n\n<script>\n(function(scope) {\n    scope.$watch('msg', function(msg) {\n        if (!msg) return;\n        let led = document.getElementById('led');\n        let txt = document.getElementById('estado_texto');\n\n        if (msg.payload === 'running') {\n            led.style.backgroundColor = 'green';\n            txt.innerHTML = 'Motor en marcha';\n        }\n        else if (msg.payload === 'stopped') {\n            led.style.backgroundColor = 'red';\n            txt.innerHTML = 'Motor detenido';\n        }\n    });\n})(scope);\n</script>",
+        "x": 950,
+        "y": 420,
+        "wires": [
+            []
         ]
     }
 ]
